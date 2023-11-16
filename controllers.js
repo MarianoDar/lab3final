@@ -1,6 +1,5 @@
 const db = require('./db');
 
-// Obtener todos los libros
 exports.getAllLibros = (req, res) => {
   db.query('SELECT * FROM libros', (err, result) => {
     if (err) throw err;
@@ -8,7 +7,6 @@ exports.getAllLibros = (req, res) => {
   });
 };
 
-// Obtener un libro por ID
 exports.getLibroById = (req, res) => {
   const libroId = req.params.id;
   db.query('SELECT * FROM libros WHERE id = ?', [libroId], (err, result) => {
@@ -17,7 +15,6 @@ exports.getLibroById = (req, res) => {
   });
 };
 
-// Agregar un nuevo libro
 exports.addLibro = (req, res) => {
   const { titulo, autor, genero, ano_publicacion, num_paginas } = req.body;
   db.query(
@@ -30,7 +27,6 @@ exports.addLibro = (req, res) => {
   );
 };
 
-// Actualizar un libro por ID
 exports.updateLibro = (req, res) => {
   const libroId = req.params.id;
   const { titulo, autor, genero, ano_publicacion, num_paginas } = req.body;
@@ -44,7 +40,6 @@ exports.updateLibro = (req, res) => {
   );
 };
 
-// Eliminar un libro por ID
 exports.deleteLibro = (req, res) => {
   const libroId = req.params.id;
   db.query('DELETE FROM libros WHERE id=?', [libroId], (err, result) => {
